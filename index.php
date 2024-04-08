@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAULLFEST</title>
+<!--    <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico.jpg">-->
+<!--    <link rel="icon" type="image/jpg" href="images/logo.jpg">-->
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/script.js" defer></script>
+</head>
+<body>
+
+<?php require_once("templates/header.html"); ?>
+
+<div class="bleu">
+    <br><br><br>
+    <H2>Au programme</H2>
+    <br><br><br>
+    <div class="groupes">
+        <div id="g1" class="groupe reveal">
+            <img class="groupeIMG" src="groupes/1.png" alt="">
+            <div class="g">
+                <H3>B.WILEY</H3>
+                <H4>Rock Metal</H4>
+            </div>
+            <a href="https://www.facebook.com/profile.php?id=100034443744574">
+                <img class="icon gF" src="images/Facebook.png" alt="">
+            </a>
+            <p id="d1" class="d" hidden>
+                Originaire du Nord, B.Wiley se compose de 5 musiciens issus de formations reconnues de la scène musicale locale (Lopsided, Dadabovic...) avec lesquels ils ont fait de nombreux concerts, partageant l'affiche avec plusieurs valeurs sûres de la scène rock-métal française (Headcharger, Hacride, Klone...).
+                Le groupe puise ses influences dans le rock et le métal des années 90 à nos jours et propose un rock énergique et inventif aux mélodies sombres et ciselées.
+                Après plusieurs mois de travail, B.Wiley a mis en ligne une première série de morceaux autoproduits debut 2023.
+                Pour accompagner cette diffusion, le groupe reprend les chemins de la scène avec un nouveau set puissant qu'il viendra interpréter sur les scènes de festivals et lors de concerts dans toute la région des Hauts de France et en Belgique au premier semestre 2023.
+            </p>
+        </div>
+        <div id="g2" class="groupe reveal">
+            <img class="groupeIMG" src="groupes/2.png" alt="">
+            <div class="g">
+                <H3>BLACK HAZARD</H3>
+                <H4>Heavy Rock</H4>
+            </div>
+            <a href="https://www.facebook.com/BLACKHAZARDBAND">
+                <img class="icon gF" src="images/Facebook.png" alt="">
+            </a>
+            <p id="d2" class="d" hidden>
+                Black hazard est un groupe de heavy rock stoner originaire du cambrèsis dans les Hauts-de-France.
+                La formation se compose de 4 potes : Tom à la guitare lead, Antoine à la basse, Ludo au chant et Julien à la batterie.
+                La formation existe depuis 2021, en sortie de 1er confinement.
+                Depuis ses débuts, Black Hazard a un objectif très clair : envoyer des riffs bien lourds et incisifs accompagnés d'une rythmique à la fois puissante et groovy.
+                Le groupe souhaite parfaire l'écoute de ses auditeurs grâce à l'énorme présence de son frontman (qui se consacre à 100% au chant en anglais) mais également via l'exécution, à la fois démente et efficace, des solos de son lead.
+                2023, les 4 potes décident d'enregistrer leur premier album 11 titres : Burning Paradise.
+            </p>
+        </div>
+        <div id="g3" class="groupe reveal">
+            <img class="groupeIMG" src="groupes/3.png" alt="">
+            <div class="g">
+                <H3>FOOL'S PARADISE</H3>
+                <H4>Heavy Metal Progressif</H4>
+            </div>
+            <a href="https://www.facebook.com/foolsparadisegroup">
+                <img class="icon gF" src="images/Facebook.png" alt="">
+            </a>
+            <p id="d3" class="d" hidden>
+                Fool's Paradise s'adresse aux amateurs d'un Heavy Metal Progressif foisonnant de riffs mais dans lequel la technique reste au service de la mélodie.
+                Parmi les inspirations de ses membres figurent des groupes tels que Dream Theater, Symphony X, Paradise Lost, Iron Maiden ou Metallica.
+                Au programme, un chant clair et puissant, des duels de guitares parfois épiques et des cavalcades de basse, le tout soutenu par une batterie énergique.
+                Les thèmes abordés dans les paroles sont en lien avec les dérives de la société qui nous entoure et les conséquences psychologiques qui en découlent pour chacun de nous
+            </p>
+        </div>
+        <div id="g4" class="groupe reveal">
+            <img class="groupeIMG" src="groupes/4.png" alt="">
+            <div class="g">
+                <H3>MR.MYST</H3>
+                <H4>Heavy Rock</H4>
+            </div>
+            <a href="https://www.facebook.com/mrmystofficial">
+                <img class="icon gF" src="images/Facebook.png" alt="">
+            </a>
+            <p id="d4" class="d" hidden>
+                Originaire du Nord, B.Wiley se compose de 5 musiciens issus de formations reconnues de la scène musicale locale (Lopsided, Dadabovic...) avec lesquels ils ont fait de nombreux concerts, partageant l'affiche avec plusieurs valeurs sûres de la scène rock-métal française (Headcharger, Hacride, Klone...).
+                Le groupe puise ses influences dans le rock et le métal des années 90 à nos jours et propose un rock énergique et inventif aux mélodies sombres et ciselées.
+                Après plusieurs mois de travail, B.Wiley a mis en ligne une première série de morceaux autoproduits debut 2023.
+                Pour accompagner cette diffusion, le groupe reprend les chemins de la scène avec un nouveau set puissant qu'il viendra interpréter sur les scènes de festivals et lors de concerts dans toute la région des Hauts de France et en Belgique au premier semestre 2023.
+            </p>
+        </div>
+    </div>
+<!--    <br><br><br>-->
+    <img class="illustration" src="groupes/illustration.png">
+<!--    <br><br><br>-->
+    <img class="i4" src="groupes/i4.png">
+
+    <div class="groupes2">
+        <div id="g5" class="groupe groupe2 reveal">
+            <img class="groupeIMG" src="groupes/5.png" alt="">
+            <div class="g">
+                <H3>RACHEZEIT <br> Tribute Rammstein</H3>
+            </div>
+            <a href="https://www.facebook.com/Rachezeit">
+                <img class="icon gF2" src="images/Facebook.png" alt="">
+            </a>
+            <p id="d5" class="d" hidden>
+                « Rachezeit » est un hommage au célèbre groupe allemand Rammstein.
+                En français, Rachezeit, c’est « le temps de la revanche ». Le groupe vient des Hauts de France, une région qui a donné son âme de charbon à l’industrie et la métallurgie.
+                Les cinq membres, eux, donnent leur âme au Métal Industriel de Rammstein. Pour leur plaisir, bien sûr. Mais aussi en guise de revanche sur les aléas de la vie....
+                Pierre-Antoine est à la guitare rythmique et à la gestion MAO. La fougue et la passion.
+                Fabrice est notre bassiste, en alternance avec Christophe, carrures à la mesure du son de basse, énormes expériences.
+                Jérémy, batteur, ex pro, connait par cœur la « sphère métal » dont il est un noyau radioactif.
+                Evanchko, c’est le front man, venu de Lorraine construire sa vie dans le Nord. Le chant comme un cri de hargne.
+                Le fondateur du groupe, c’est Angelo Di Luciano, qui tient la guitare lead, (ex Sentinhell), et qui a écumé les scènes de France et d’ailleurs depuis 30 ans.
+                Fabrice est également l’ingé son du groupe, qui traine ses guêtres sur les scènes du Nord depuis longtemps.
+                RACHEZEIT a depuis 2 ans écumé les scènes en France et en Belgique avec à chaque fois un enthousiasme significatif du public rammsteinien qui lui reconnaît sa fidélité musicale envers Rammstein.
+                Tschüss , und bis bald auf der Bühne!!</p>
+        </div>
+        <br><br>
+        <br><br>
+        <img class="illustration2" src="groupes/illustration3.png">
+    </div>
+</div>
+
+
+<div id="c2" class="bleu2">
+    <br><br><br>
+    <H2 class="reveal">Stands et expos</H2>
+    <br><br><br>
+    <div class="groupes3">
+        <div id="g1" class="groupe groupe3 reveal">
+            <img class="groupeIMG" src="groupes/6.png" alt="">
+            <div class="g">
+                <H3>Jérome Dussenne <br> Stand lutherie</H3>
+                <a href="https://www.facebook.com/profile.php?id=100081976332383">
+                    <img class="icon gF" src="images/Facebook.png" alt="">
+                </a>
+            </div>
+            <br>
+        </div>
+        <div id="g1" class="groupe groupe3 reveal">
+            <img class="groupeIMG" src="groupes/7.png" alt="">
+            <div class="g">
+                <H3>Le Croc d'Encre <br> Stand Tatouage</H3>
+                <a href="https://www.facebook.com/profile.php?id=100068912792042">
+                    <img class="icon gF" src="images/Facebook.png" alt="">
+                </a>
+            </div>
+            <br>
+        </div>
+    </div>
+    <br><br><br>
+    <br><br><br>
+
+<!--    <a class="button2" href="PrecedentesEditions.php">Voir les précédentes éditions</a>-->
+
+    <br><br><br>
+    <br><br><br>
+
+</div>
+
+
+
+<?php require_once("templates/footer.html"); ?>
+
+</body>
+</html>
