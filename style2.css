@@ -13,7 +13,8 @@ body {
 nav {
     position: fixed;
     display: inline-grid;
-    float: left;
+    width: 20%;
+    justify-content: center;
 }
 .navs {
     float: left;
