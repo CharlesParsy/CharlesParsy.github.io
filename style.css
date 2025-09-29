@@ -13,21 +13,43 @@ body, html {
     margin: 0;
 }
 
-h1, p {
-    padding-left: 25px;
+h1, h2, p { padding: 0 15px; }
+h1, h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
+/*a {*/
+/*    font-size: 22px;*/
+/*    padding: 10px;*/
+/*    color: black;*/
+/*    border: solid black 2px;*/
+/*    border-radius: 20px;*/
+/*    text-decoration: none;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*}*/
+
 a {
-    font-size: 22px;
-    padding-left: 25px;
+    display: inline-block;
+    font-size: 18px;
+    padding: 10px 20px;
     color: black;
+    border: 2px solid black;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+a:hover {
+    background: #005d87;
+    color: white;
 }
 
 .logo {
     position: fixed;
     top: 15px;
     width: 200px;
-    /*top: 50%;*/
+    max-width: 40%;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: -1;
@@ -35,109 +57,51 @@ a {
 
 .cadre {
     border-radius: 50px;
-    width: 800px;
+    max-width: 800px;
     background: white;
     padding: 10px;
-    border-right: 20px solid black;
-    border-bottom: 20px solid black;
+    border-right: 15px solid black;
+    border-bottom: 15px solid black;
+    display: grid;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 footer {
     background: white;
     margin: 0;
     width: 100%;
-    height: 150px;
+    /*height: 150px;*/
     position: fixed;
     bottom: 0;
-    padding: 10px 10px 10px 60px;
+    padding: 10px 60px 10px 60px;
 }
 
+@media (max-width: 768px) {
+    footer {
+        text-align: center;
+    }
+    footer p, footer h2 {
+        padding: 0;
+        margin: 0;
+    }
+    a {
+        font-size: 14px;
+    }
+    h1, h2 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 12px;
+    }
+}
 
-
-
-/*.btns {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.btn {*/
-/*    width: 80%;*/
-/*    border: none;*/
-/*    border-radius: 100px;*/
-/*    cursor: pointer;*/
-/*    font-size: 50px;*/
-/*    transition: all 0.3s ease;*/
-/*    margin-bottom: 12px;*/
-/*}*/
-/*.btn-border-reveal {*/
-/*    background-color: transparent;*/
-/*    color: black;*/
-/*    border: 6px solid black;*/
-/*    position: relative;*/
-/*    z-index: 0;*/
-/*}*/
-
-/*.btn-border-reveal::after {*/
-/*    content: "";*/
-/*    position: absolute;*/
-/*    width: 0;*/
-/*    height: 100%;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    transition: width 0.3s ease;*/
-/*    border-radius: 70px;*/
-/*    z-index: -1;*/
-/*}*/
-
-/*.btn-border-reveal:hover::after {*/
-/*    width: 100%;*/
-/*}*/
-
-/*.btn-border-reveal:hover {*/
-/*    color: white;*/
-/*}*/
-
-/*.red::after {*/
-/*    !*background-image: linear-gradient(to bottom, #bf2a20 10%, black 100%);*!*/
-/*    background-image: linear-gradient(to bottom, #961D12 10%, black 100%);*/
-/*}*/
-
-/*.orange::after {*/
-/*    !*background-image: linear-gradient(to bottom, orange 10%, black 100%);*!*/
-/*    background-image: linear-gradient(to bottom, #ED9B03 10%, black 100%);*/
-/*}*/
-
-/*.violet::after {*/
-/*    !*background-image: linear-gradient(to bottom, #640065 10%, black 100%);*!*/
-/*    background-image: linear-gradient(to bottom, #7100A1 10%, black 100%);*/
-/*}*/
-
-/*.green::after {*/
-/*    background-image: linear-gradient(to bottom, #129617 10%, black 100%);*/
-/*}*/
-
-/*.blue::after {*/
-/*    background-image: linear-gradient(to bottom, #015CC4 10%, black 100%);*/
-/*}*/
-
-/*.retour {*/
-/*    position: fixed;*/
-/*    top: 50px;*/
-/*    left: 50px;*/
-/*    border: solid 5px white;*/
-/*    border-radius: 10px;*/
-/*    background: transparent;*/
-/*    height: 40px;*/
-/*    width: 70px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.fleche {*/
-/*    border: solid white;*/
-/*    border-width: 0 4px 4px 0;*/
-/*    display: inline-block;*/
-/*    padding: 4px;*/
-/*    transform: rotate(135deg);*/
-/*    -webkit-transform: rotate(135deg);*/
-/*}*/
+@media (max-width: 600px) {
+    a {
+        font-size: 14px;
+        /*padding: 8px 15px;*/
+    }
+    p {
+        font-size: 10px;
+    }
+}
