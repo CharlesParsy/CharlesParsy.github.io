@@ -3,7 +3,7 @@ body {
     width: 100%;
     margin: 0;
     background-color: black;
-    Font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    Font-family: 'Poppins', sans-serif;
     color: white;
     display: flex;
 }
@@ -30,7 +30,12 @@ nav {
 #link-s4:hover, #link-s4.active, .green { background: #129617; }
 #link-s5:hover, #link-s5.active, .blue { background: #015CC4; }
 
-.lien:hover {background: black;}
+.armlien { background: #BD2214; }
+.armlien:hover { background: #720B02; }
+.haullien { background: #A210E1; }
+.haullien:hover { background: #57007D; }
+.asshvlien { background: #FFA600; }
+.asshvlien:hover { background: #A76D00; }
 
 a {
     background: transparent;
