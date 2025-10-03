@@ -200,6 +200,7 @@ p {
     a {
         font-size: 10px;
         padding: 5px;
+        border: white solid 2px;
     }
 }
 @media (max-width: 500px) {
