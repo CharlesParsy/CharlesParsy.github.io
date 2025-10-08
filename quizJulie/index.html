@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ostéo Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrsi_SS-Tz02U5jYFgYTPEJVYywqS14wc",
+            authDomain: "testquiz-6c8b7.firebaseapp.com",
+            projectId: "testquiz-6c8b7",
+            storageBucket: "testquiz-6c8b7.firebasestorage.app",
+            messagingSenderId: "166793498577",
+            appId: "1:166793498577:web:ff371eb47f556922d49af0",
+            measurementId: "G-E2DEX1Z7J3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let lastQuestion = null; // ⬅️ on garde la dernière question affichée
+
+        async function loadQuestion() {
+            document.getElementById("result").textContent = "";
+            document.getElementById("gif").style.display = "none";
+            const snapshot = await getDocs(collection(db, "questions"));
+            const allQuestions = snapshot.docs.map(doc => doc.data());
+
+            let q;
+            do {
+                q = allQuestions[Math.floor(Math.random() * allQuestions.length)];
+            } while (q.intitule === lastQuestion?.intitule && allQuestions.length > 1); // ⬅️ évite répétition immédiate
+
+            lastQuestion = q; // ⬅️ mémorise la question actuelle
+
+            document.getElementById("question").textContent = q.intitule;
+            const answersDiv = document.getElementById("answers");
+            answersDiv.innerHTML = "";
+
+            const allAnswers = [...(q.propositions || []), q.reponse].sort(() => Math.random() - 0.5);
+
+            allAnswers.forEach(ans => {
+                const btn = document.createElement("button");
+                btn.textContent = ans;
+                btn.addEventListener("click", () => checkAnswer(btn, ans, q.reponse));
+                answersDiv.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedBtn, choice, correct) {
+            const buttons = document.querySelectorAll("#answers button");
+            const gif = document.getElementById("gif");
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (choice === correct) {
+                selectedBtn.classList.add("correct");
+                document.getElementById("result").textContent = "✅ Bonne réponse !";
+                // gif.src = "bravo.gif"; // ton fichier GIF
+                gif.style.display = "block";
+            } else {
+                selectedBtn.classList.add("wrong");
+                document.getElementById("result").textContent = "❌ Mauvaise réponse !";
+                buttons.forEach(btn => {
+                    if (btn.textContent === correct) btn.classList.add("correct");
+                });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadQuestion();
+            document.getElementById("nextBtn").addEventListener("click", loadQuestion);
+        });
+    </script>
+
+</head>
+<body class="fond">
+<img id="gif" src="win.gif" alt="gif de réaction">
+<div class="cadre">
+    <h1>Ostéo Quiz</h1>
+    <p id="question"></p>
+    <div id="answers"></div>
+    <p id="result"></p>
+    <button id="nextBtn">Question suivante</button>
+</div>
+<a href="login.html">Connexion admin</a>
+</body>
+</html>
