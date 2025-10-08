@@ -11,6 +11,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 10px;
 
     backdrop-filter: blur(2px);
     /*background-attachment: fixed;*/
@@ -101,13 +102,14 @@ button:disabled {
     z-index: -1;
 }
 
-@media (max-width: 600px) {
-    .cadre {
-        max-width: unset;
-    }
-
+@media (max-width: 500px) {
+    h1 { font-size: 18px; }
+    p { font-size: 13px; }
     button {
-        width: 90%;
-        font-size: 15px;
+        font-size: 13px;
+
+    }
+    .cadre {
+        padding: 20px 25px;
     }
 }
