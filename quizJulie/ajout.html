@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une question</title>
+    <link rel="stylesheet" href="style2.css">
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getFirestore, collection, addDoc }
+            from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+        // 🔑 Config Firebase (la même que ton quiz)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrsi_SS-Tz02U5jYFgYTPEJVYywqS14wc",
+            authDomain: "testquiz-6c8b7.firebaseapp.com",
+            projectId: "testquiz-6c8b7",
+            storageBucket: "testquiz-6c8b7.firebasestorage.app",
+            messagingSenderId: "166793498577",
+            appId: "1:166793498577:web:ff371eb47f556922d49af0",
+            measurementId: "G-E2DEX1Z7J3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function addQuestion(event) {
+            event.preventDefault();
+            const intitule = document.getElementById("intitule").value.trim();
+            const reponse = document.getElementById("reponse").value.trim();
+            const prop1 = document.getElementById("prop1").value.trim();
+            const prop2 = document.getElementById("prop2").value.trim();
+            const prop3 = document.getElementById("prop3").value.trim();
+            const prop4 = document.getElementById("prop4").value.trim();
+            const message = document.getElementById("message");
+
+            if (!intitule || !reponse || !prop1 || !prop2 || !prop3 || !prop4) {
+                message.style.color = "red";
+                message.textContent = "⚠️ Merci de remplir tous les champs.";
+                return;
+            }
+
+            const question = {
+                intitule,
+                reponse,
+                propositions: [prop1, prop2, prop3, prop4]
+            };
+
+            try {
+                await addDoc(collection(db, "questions"), question);
+                message.style.color = "green";
+                message.textContent = "✅ Question ajoutée avec succès !";
+                document.getElementById("form").reset();
+            } catch (error) {
+                console.error("Erreur :", error);
+                message.style.color = "red";
+                message.textContent = "❌ Erreur lors de l’ajout : " + error.message;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("form").addEventListener("submit", addQuestion);
+        });
+    </script>
+</head>
+<body>
+<h1>Ajouter une question</h1>
+<form id="form">
+    <label for="intitule">Intitulé de la question :</label>
+    <textarea id="intitule" rows="3" required></textarea>
+
+    <label for="reponse">Bonne réponse :</label>
+    <input type="text" id="reponse" required />
+
+    <label>Autres propositions :</label>
+    <input type="text" id="prop1" placeholder="Proposition 1" required />
+    <input type="text" id="prop2" placeholder="Proposition 2" required />
+    <input type="text" id="prop3" placeholder="Proposition 3" required />
+    <input type="text" id="prop4" placeholder="Proposition 4" required />
+
+    <button class="submit" type="submit">Ajouter la question</button>
+</form>
+
+<p id="message"></p>
+</body>
+</html>

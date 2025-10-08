@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des questions</title>
+    <link rel="stylesheet" href="style2.css">
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, deleteDoc, doc }
+            from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+        // Config Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrsi_SS-Tz02U5jYFgYTPEJVYywqS14wc",
+            authDomain: "testquiz-6c8b7.firebaseapp.com",
+            projectId: "testquiz-6c8b7",
+            storageBucket: "testquiz-6c8b7.firebasestorage.app",
+            messagingSenderId: "166793498577",
+            appId: "1:166793498577:web:ff371eb47f556922d49af0",
+            measurementId: "G-E2DEX1Z7J3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadQuestions() {
+            const container = document.getElementById("list");
+            container.innerHTML = "Chargement...";
+            const snapshot = await getDocs(collection(db, "questions"));
+            container.innerHTML = "";
+
+            if (snapshot.empty) {
+                container.innerHTML = "<p>Aucune question trouvée.</p>";
+                return;
+            }
+
+            snapshot.forEach(docSnap => {
+                const q = docSnap.data();
+                const card = document.createElement("div");
+                card.className = "question";
+                card.innerHTML = `
+          <p><strong>Question :</strong> ${q.intitule}</p>
+          <p><strong>Bonne réponse :</strong> ${q.reponse}</p>
+          <p><strong>Propositions :</strong> ${q.propositions.join(", ")}</p>
+        `;
+
+                const delBtn = document.createElement("button");
+                delBtn.textContent = "Supprimer";
+                delBtn.addEventListener("click", async () => {
+                    if (confirm("Supprimer cette question ?")) {
+                        await deleteDoc(doc(db, "questions", docSnap.id));
+                        card.remove();
+                        document.getElementById("message").textContent = "✅ Question supprimée avec succès.";
+                    }
+                });
+
+                card.appendChild(delBtn);
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", loadQuestions);
+    </script>
+</head>
+<body>
+<h1>Liste des questions</h1>
+<a href="ajout.html">Ajouter une question</a>
+<div id="list"></div>
+<p id="message"></p>
+</body>
+</html>
