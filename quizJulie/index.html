@@ -23,57 +23,65 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        let lastQuestion = null; // ⬅️ on garde la dernière question affichée
+        let questions = [];
+        let quizQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
 
-        async function loadQuestion() {
+        // --- Étape 1 : Chargement des questions ---
+        async function initQuiz() {
+            const snapshot = await getDocs(collection(db, "questions"));
+            questions = snapshot.docs.map(doc => doc.data());
+        }
+
+        // --- Étape 2 : Lancer le quiz ---
+        function startQuiz() {
+            const nb = parseInt(document.getElementById("nbQuestions").value);
+            if (isNaN(nb) || nb <= 0) return alert("Entrez un nombre valide !");
+            if (nb > questions.length) return alert("Pas assez de questions dans la base !");
+
+            // Tirage aléatoire unique
+            quizQuestions = shuffleArray([...questions]).slice(0, nb);
+
+            document.getElementById("setup").style.display = "none";
+            document.getElementById("quiz").style.display = "block";
+            score = 0;
+            currentIndex = 0;
+            loadQuestion();
+        }
+
+        // --- Étape 3 : Afficher une question ---
+        function loadQuestion() {
+            const q = quizQuestions[currentIndex];
             document.getElementById("result").textContent = "";
             document.getElementById("gif").style.display = "none";
-            const snapshot = await getDocs(collection(db, "questions"));
-            const allQuestions = snapshot.docs.map(doc => doc.data());
+            document.getElementById("question").textContent = `Question ${currentIndex + 1} : ${q.intitule}`;
 
-            let q;
-            do {
-                q = allQuestions[Math.floor(Math.random() * allQuestions.length)];
-            } while (q.intitule === lastQuestion?.intitule && allQuestions.length > 1); // ⬅️ évite répétition immédiate
-
-            lastQuestion = q; // ⬅️ mémorise la question actuelle
-
-            document.getElementById("question").textContent = q.intitule;
             const answersDiv = document.getElementById("answers");
             answersDiv.innerHTML = "";
 
             const allAnswers = [...(q.propositions || []), q.reponse].sort(() => Math.random() - 0.5);
-
             allAnswers.forEach(ans => {
                 const btn = document.createElement("button");
                 btn.textContent = ans;
                 btn.addEventListener("click", () => checkAnswer(btn, ans, q.reponse));
                 answersDiv.appendChild(btn);
             });
+
+            document.getElementById("nextBtn").style.display = "none";
         }
 
+        // --- Étape 4 : Vérifier la réponse ---
         function checkAnswer(selectedBtn, choice, correct) {
             const buttons = document.querySelectorAll("#answers button");
             const gif = document.getElementById("gif");
             buttons.forEach(btn => btn.disabled = true);
 
-            gif.addEventListener("ended", () => {
-                gif.style.display = "none";
-            });
-
             if (choice === correct) {
                 selectedBtn.classList.add("correct");
                 document.getElementById("result").textContent = "✅ Bonne réponse !";
-                // gif.src = "win.gif"; // ton fichier GIF
-                // gif.style.display = "block";
-                // const gif = document.getElementById("gif");
+                score++;
                 playBravo();
-                gif.addEventListener("ended", () => {
-                    gif.style.display = "none";
-                });
-                // gif.style.display = "block";
-                // gif.currentTime = 0; // remet la vidéo au début
-                // gif.play();
             } else {
                 selectedBtn.classList.add("wrong");
                 document.getElementById("result").textContent = "❌ Mauvaise réponse !";
@@ -81,35 +89,84 @@
                     if (btn.textContent === correct) btn.classList.add("correct");
                 });
             }
+
+            document.getElementById("nextBtn").style.display = "inline-block";
         }
+
+        // --- Étape 5 : Passer à la suivante ---
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        // --- Étape 6 : Fin du quiz ---
+        function endQuiz() {
+            document.getElementById("quiz").style.display = "none";
+            document.getElementById("end").style.display = "block";
+            document.getElementById("score").textContent = `Score final : ${score} / ${quizQuestions.length}`;
+        }
+
+        // --- Réinitialiser ---
+        function restartQuiz() {
+            document.getElementById("end").style.display = "none";
+            document.getElementById("setup").style.display = "block";
+        }
+
+        // --- Utilitaires ---
+        function shuffleArray(arr) {
+            return arr.sort(() => Math.random() - 0.5);
+        }
+
         function playBravo() {
+            const gif = document.getElementById("gif");
             gif.style.display = "block";
             gif.currentTime = 0;
             gif.play();
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            loadQuestion();
-            document.getElementById("nextBtn").addEventListener("click", loadQuestion);
+        document.addEventListener("DOMContentLoaded", async () => {
+            await initQuiz();
+            document.getElementById("startBtn").addEventListener("click", startQuiz);
+            document.getElementById("nextBtn").addEventListener("click", nextQuestion);
+            document.getElementById("restartBtn").addEventListener("click", restartQuiz);
         });
     </script>
-
 </head>
+
 <body class="fond">
-<!--<img id="gif" src="win.gif" alt="gif de réaction">-->
-<!--<video id="gif" autoplay playsinline muted>-->
-<!--    <source src="win.mp4" type="video/mp4">-->
-<!--</video>-->
 <video id="gif" autoplay muted playsinline style="display:none;">
     <source src="win.webm" type="video/webm">
 </video>
+
 <div class="cadre">
     <h1>Ostéo Quiz</h1>
-    <p id="question"></p>
-    <div id="answers"></div>
-    <p id="result"></p>
-    <button id="nextBtn">Question suivante</button>
+
+    <!-- 🟩 Écran de choix -->
+    <div id="setup">
+        <p>Combien de questions souhaitez-vous ?</p>
+        <input type="number" id="nbQuestions" min="1" value="5">
+        <button id="startBtn">Lancer le quiz</button>
+    </div>
+
+    <!-- 🟦 Écran du quiz -->
+    <div id="quiz" style="display:none;">
+        <p id="question"></p>
+        <div id="answers"></div>
+        <p id="result"></p>
+        <button id="nextBtn" style="display:none;">Question suivante</button>
+    </div>
+
+    <!-- 🟥 Écran de fin -->
+    <div id="end" style="display:none;">
+        <p id="score"></p>
+        <button id="restartBtn">Recommencer</button>
+    </div>
 </div>
+
 <a href="login.html">Connexion admin</a>
 </body>
 </html>
