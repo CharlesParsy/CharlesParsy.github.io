@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une question</title>
+    <link rel="stylesheet" href="style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module">
+        // Vérifie la connexion locale
+        if (localStorage.getItem("adminConnected") !== "true") {
+            window.location.href = "login.html";
+        }
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+        import { getAuth, signInWithEmailAndPassword }
+            from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+        // --- Config Firebase ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrsi_SS-Tz02U5jYFgYTPEJVYywqS14wc",
+            authDomain: "testquiz-6c8b7.firebaseapp.com",
+            projectId: "testquiz-6c8b7",
+            storageBucket: "testquiz-6c8b7.firebasestorage.app",
+            messagingSenderId: "166793498577",
+            appId: "1:166793498577:web:ff371eb47f556922d49af0",
+            measurementId: "G-E2DEX1Z7J3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth();
+
+        // --- Connexion automatique à Firebase ---
+        signInWithEmailAndPassword(auth, "parsycharlestom@gmail.com", "071003")
+            .then(userCredential => {
+                console.log("Connecté :", userCredential.user.email);
+                loadCategories();
+            })
+            .catch(error => {
+                console.error("Erreur de connexion :", error.message);
+            });
+
+        // --- Charger la liste des collections (catégories) ---
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+        async function loadCategories() {
+            const select = document.getElementById("categorie");
+            select.innerHTML = "<option>Chargement...</option>";
+
+            try {
+                const docRef = doc(db, "categories", "liste");
+                const snap = await getDoc(docRef);
+
+                if (snap.exists()) {
+                    const data = snap.data();
+                    const categories = data.noms || [];
+
+                    select.innerHTML = "<option value=''>-- Sélectionnez une catégorie --</option>";
+
+                    categories.forEach(cat => {
+                        const opt = document.createElement("option");
+                        opt.value = cat;
+                        opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+                        select.appendChild(opt);
+                    });
+                } else {
+                    select.innerHTML = "<option>Aucune catégorie trouvée</option>";
+                }
+            } catch (error) {
+                console.error("Erreur lors du chargement des catégories :", error);
+                select.innerHTML = "<option>Erreur de chargement</option>";
+            }
+        }
+
+        // --- Ajouter la question ---
+        async function addQuestion(event) {
+            event.preventDefault();
+
+            const intitule = document.getElementById("intitule").value.trim();
+            const reponse = document.getElementById("reponse").value.trim();
+            const prop1 = document.getElementById("prop1").value.trim();
+            const prop2 = document.getElementById("prop2").value.trim();
+            const prop3 = document.getElementById("prop3").value.trim();
+            const prop4 = document.getElementById("prop4").value.trim();
+            const categorie = document.getElementById("categorie").value;
+            const message = document.getElementById("message");
+
+            if (!intitule || !reponse || !prop1 || !prop2 || !prop3 || !prop4) {
+                message.style.color = "red";
+                message.textContent = "⚠️ Merci de remplir tous les champs.";
+                return;
+            }
+
+            const question = {
+                intitule,
+                reponse,
+                propositions: [prop1, prop2, prop3, prop4]
+            };
+
+            try {
+                await addDoc(collection(db, categorie), question);
+                message.style.color = "green";
+                message.textContent = `✅ Question ajoutée dans "${categorie}" !`;
+                document.getElementById("form").reset();
+            } catch (error) {
+                console.error("Erreur :", error);
+                message.style.color = "red";
+                message.textContent = "❌ Erreur : " + error.message;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("form").addEventListener("submit", addQuestion);
+        });
+    </script>
+</head>
+
+<body>
+<h1>Ajouter une question</h1>
+
+<form id="form">
+    <label for="categorie">Catégorie :</label>
+    <select id="categorie" required>
+        <option disabled selected>Chargement...</option>
+    </select>
+
+    <label for="intitule">Intitulé de la question :</label>
+    <textarea id="intitule" rows="3" required></textarea>
+
+    <label for="reponse">Bonne réponse :</label>
+    <input type="text" id="reponse" required>
+
+    <label>Autres propositions :</label>
+    <input type="text" id="prop1" placeholder="Proposition 1" required>
+    <input type="text" id="prop2" placeholder="Proposition 2" required>
+    <input type="text" id="prop3" placeholder="Proposition 3" required>
+    <input type="text" id="prop4" placeholder="Proposition 4" required>
+
+    <button class="submit" type="submit">Ajouter la question</button>
+</form>
+
+<p id="message"></p>
+</body>
+</html>
