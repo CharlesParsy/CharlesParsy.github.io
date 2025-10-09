@@ -33,6 +33,7 @@ body {
 .cadre:hover {
     transform: translateY(-3px);
 }
+
 button {
     display: block;
     width: 80%;
@@ -51,6 +52,7 @@ button {
 button:hover:not(:disabled) {
     background-color: #eacdbe;
     border-color: #c2796b;
+    transform: translateY(-2px);
 }
 button.correct {
     background-color: #6dd66d !important;
@@ -66,27 +68,25 @@ button:disabled {
     opacity: 0.8;
     cursor: not-allowed;
 }
-
-#result {
-    font-weight: bold;
-    margin-top: 18px;
-    font-size: 18px;
-}
-#nextBtn {
+#nextBtn, #startBtn, #restartBtn {
     background: #977c68;
-    /*border: none;*/
     color: white;
     font-weight: bold;
     border-radius: 10px;
     padding: 12px 24px;
     transition: background 0.3s ease;
-    border: solid 3px #fffaf7;
-    /*border-right: solid 5px #fffaf7;*/
+    border: none;
+    width: 70%;
 }
-#nextBtn:hover:not(:disabled) {
-    border: solid 3px #b7a293;
-    /*border-right: solid 5px #b7a293;*/
+#nextBtn:hover:not(:disabled), #startBtn:hover, #restartBtn:hover {
+    background-color: #b18a74;
 }
+#result {
+    font-weight: bold;
+    margin-top: 18px;
+    font-size: 18px;
+}
+
 /*#gif {*/
 /*    position: absolute;*/
 /*    top: 0;*/
@@ -107,7 +107,24 @@ button:disabled {
     object-fit: cover; /* ou 'cover' selon ce que tu veux */
     z-index: -1;
 }
-
+#setup input {
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #b7a293;
+    font-size: 16px;
+    margin: auto;
+}
+a {
+    color: #3b2f2a;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    opacity: 0.7;
+}
+a:hover {
+    opacity: 1;
+}
 @media (max-width: 500px) {
     h1 { font-size: 18px; }
     p { font-size: 13px; }
@@ -119,7 +136,6 @@ button:disabled {
         padding: 20px 25px;
     }
 }
-
 
 .login-box {
     background: #fffaf7;
