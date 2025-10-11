@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des questions</title>
+    <link rel="stylesheet" href="style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module">
+        // 🔒 Vérifie la connexion admin
+        if (localStorage.getItem("adminConnected") !== "true") {
+            window.location.href = "login.html";
+        }
+
+        // import { logout, loadQuestions, loadCategories } from "./script.js";
+        import { logout, getQuestionsByCategory, loadCategories } from "./script.js";
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const select = document.getElementById("categorie");
+            select.innerHTML = "<option>Chargement...</option>";
+
+            // 🔹 Charger les catégories
+            const categories = await loadCategories();
+            if (!categories || categories.length === 0) {
+                select.innerHTML = "<option>Aucune catégorie trouvée</option>";
+            } else {
+                select.innerHTML = "<option value=''>-- Sélectionnez une catégorie --</option>";
+                categories.forEach(cat => {
+                    const opt = document.createElement("option");
+                    opt.value = cat;
+                    opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+                    select.appendChild(opt);
+                });
+            }
+
+            // 🔹 Lorsqu’on choisit une catégorie → charger les questions
+            select.addEventListener("change", async () => {
+                const cat = select.value;
+                const listDiv = document.getElementById("list");
+                listDiv.innerHTML = "";
+
+                if (!cat) return;
+
+                const questions = await getQuestionsByCategory(cat); // ✅ récupère correctement
+
+                if (!questions || questions.length === 0) {
+                    listDiv.textContent = "Aucune question trouvée dans cette catégorie.";
+                    return;
+                }
+
+                questions.forEach(q => {
+                    const div = document.createElement("div");
+                    div.className = "question-item";
+                    div.innerHTML = `
+            <p><strong>${q.intitule}</strong></p>
+            <p><em>Réponse :</em> ${q.reponse}</p>
+            <button class="modifier">Modifier</button>
+            <button class="supprimer">Supprimer</button>
+            <hr>
+        `;
+
+                    div.querySelector(".modifier").addEventListener("click", () => {
+                        localStorage.setItem("editCat", cat);
+                        localStorage.setItem("editId", q.id);
+                        window.location.href = "modifier.html";
+                    });
+
+                    div.querySelector(".supprimer").addEventListener("click", async () => {
+                        if (confirm("Supprimer cette question ?")) {
+                            await deleteDoc(doc(db, cat, q.id));
+                            div.remove();
+                        }
+                    });
+
+                    listDiv.appendChild(div);
+                });
+            });
+
+
+            document.getElementById("logoutBtn").addEventListener("click", logout);
+        });
+    </script>
+</head>
+
+<body>
+<h1>Liste des questions</h1>
+<a href="ajout.html">Ajouter une question ou une catégorie</a>
+
+<div>
+    <label for="categorie"><strong>Catégorie :</strong></label>
+    <select id="categorie"></select>
+</div>
+
+<div id="list"></div>
+<p id="message"></p>
+<button id="logoutBtn">Se déconnecter</button>
+</body>
+</html>

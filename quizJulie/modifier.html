@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier une question</title>
+    <link rel="stylesheet" href="style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module">
+        import { getFirestore, doc, getDoc, updateDoc }
+            from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrsi_SS-Tz02U5jYFgYTPEJVYywqS14wc",
+            authDomain: "testquiz-6c8b7.firebaseapp.com",
+            projectId: "testquiz-6c8b7",
+            storageBucket: "testquiz-6c8b7.firebasestorage.app",
+            messagingSenderId: "166793498577",
+            appId: "1:166793498577:web:ff371eb47f556922d49af0",
+            measurementId: "G-E2DEX1Z7J3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // 🔒 Vérifie la connexion admin
+        if (localStorage.getItem("adminConnected") !== "true") {
+            window.location.href = "login.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const cat = localStorage.getItem("editCat");
+            const id = localStorage.getItem("editId");
+            const message = document.getElementById("message");
+
+            if (!cat || !id) {
+                message.style.color = "red";
+                message.textContent = "⚠️ Aucune question à modifier.";
+                return;
+            }
+
+            // 🔹 Charger la question
+            const docRef = doc(db, cat, id);
+            const snap = await getDoc(docRef);
+            if (!snap.exists()) {
+                message.style.color = "red";
+                message.textContent = "❌ Question introuvable.";
+                return;
+            }
+
+            const data = snap.data();
+            document.getElementById("intitule").value = data.intitule || "";
+            document.getElementById("reponse").value = data.reponse || "";
+            document.getElementById("prop1").value = data.propositions[0] || "";
+            document.getElementById("prop2").value = data.propositions[1] || "";
+            document.getElementById("prop3").value = data.propositions[2] || "";
+            document.getElementById("prop4").value = data.propositions[3] || "";
+            document.getElementById("solution").value = data.solution || "";
+
+            // 🔹 Soumettre modification
+            document.getElementById("form").addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const intitule = document.getElementById("intitule").value.trim();
+                const reponse = document.getElementById("reponse").value.trim();
+                const prop1 = document.getElementById("prop1").value.trim();
+                const prop2 = document.getElementById("prop2").value.trim();
+                const prop3 = document.getElementById("prop3").value.trim();
+                const prop4 = document.getElementById("prop4").value.trim();
+                const solution = document.getElementById("solution").value.trim();
+
+                if (!intitule || !reponse || !prop1 || !prop2 || !prop3 || !prop4) {
+                    message.style.color = "red";
+                    message.textContent = "⚠️ Merci de remplir tous les champs obligatoires.";
+                    return;
+                }
+
+                try {
+                    await updateDoc(docRef, {
+                        intitule,
+                        reponse,
+                        propositions: [prop1, prop2, prop3, prop4],
+                        solution: solution || ""
+                    });
+
+                    message.style.color = "green";
+                    message.textContent = "✅ Question modifiée avec succès !";
+                } catch (err) {
+                    console.error(err);
+                    message.style.color = "red";
+                    message.textContent = "❌ Erreur lors de la modification.";
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+<h1>Modifier une question</h1>
+
+<form id="form">
+    <label for="intitule">Intitulé :</label>
+    <textarea id="intitule" rows="3" required></textarea>
+
+    <label for="reponse">Bonne réponse :</label>
+    <input type="text" id="reponse" required>
+
+    <label>Autres propositions :</label>
+    <input type="text" id="prop1" required>
+    <input type="text" id="prop2" required>
+    <input type="text" id="prop3" required>
+    <input type="text" id="prop4" required>
+
+    <label for="solution">Solution / explication :</label>
+    <textarea id="solution" rows="2"></textarea>
+
+    <button type="submit">Modifier la question</button>
+</form>
+
+<p id="message"></p>
+<a href="admin.html">← Retour à l'administration</a>
+</body>
+</html>
