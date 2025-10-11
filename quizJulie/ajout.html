@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une question</title>
+    <link rel="stylesheet" href="style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module">
+        if (localStorage.getItem("adminConnected") !== "true") {
+            window.location.href = "login.html";
+        }
+
+        import { loadCategories, addQuestionWithCategory } from "./script.js";
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const select = document.getElementById("categorie");
+            const categories = await loadCategories();
+            select.innerHTML = "<option value=''>-- Sélectionnez une catégorie --</option>";
+
+            if (categories) {
+                categories.forEach(cat => {
+                    const opt = document.createElement("option");
+                    opt.value = cat;
+                    opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+                    select.appendChild(opt);
+                });
+            }
+
+            document.getElementById("form").addEventListener("submit", addQuestionWithCategory);
+        });
+    </script>
+</head>
+
+<body>
+<a class="logoA" href="index.html"><img class="logo" src="logo.svg"></a>
+
+<h1>Ajouter une question</h1>
+
+<form id="form">
+    <label for="categorie">Catégorie existante :</label>
+    <select id="categorie">
+        <option disabled selected>Chargement...</option>
+    </select>
+
+    <p><strong>Ou créez une nouvelle catégorie :</strong></p>
+    <input type="text" id="newCategorie" placeholder="Nouvelle catégorie (facultatif)">
+
+    <label for="intitule">Intitulé de la question :</label>
+    <textarea id="intitule" rows="3" required></textarea>
+
+    <label for="reponse">Bonne réponse :</label>
+    <input type="text" id="reponse" required>
+
+    <label>Autres propositions :</label>
+    <input type="text" id="prop1" placeholder="Proposition 1" required>
+    <input type="text" id="prop2" placeholder="Proposition 2" required>
+    <input type="text" id="prop3" placeholder="Proposition 3" required>
+    <input type="text" id="prop4" placeholder="Proposition 4" required>
+
+    <!-- 🔹 Nouveau champ solution -->
+    <label for="solution">Explication / Solution :</label>
+    <textarea id="solution" rows="3" placeholder="Optionnel"></textarea>
+
+    <button class="submit" type="submit">Ajouter la question</button>
+</form>
+
+<p id="message"></p>
+</body>
+</html>

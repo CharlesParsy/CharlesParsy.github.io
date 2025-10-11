@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ostéo Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module">
+        import { loadCategories, startQuiz, restartQuiz, nextQuestion, getNbQuestions } from "./script.js";
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            //Charge les catégories
+            const select = document.getElementById("category");
+            select.innerHTML = "<option>Chargement...</option>";
+            const noms = await loadCategories()
+            if(noms==null) {
+                select.innerHTML = "<option>Aucune catégorie trouvée</option>";
+            } else {
+                select.innerHTML = "<option value=''>-- Sélectionnez une catégorie --</option>";
+                noms.forEach(cat => {
+                    const opt = document.createElement("option");
+                    opt.value = cat;
+                    opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+                    select.appendChild(opt);
+                });
+            }
+            document.getElementById("startBtn").addEventListener("click", startQuiz);
+            document.getElementById("nextBtn").addEventListener("click", nextQuestion);
+            document.getElementById("restartBtn").addEventListener("click", restartQuiz);
+
+            //Change nb question pour le max de questions dans la catégorie
+            const nbQ = document.getElementById("nbQuestions");
+            const cat = document.getElementById("category");
+            cat.addEventListener("change", async () => {
+                nbQ.value = await getNbQuestions(cat.value);
+            });
+        });
+    </script>
+</head>
+
+<body class="fond">
+<a class="logoA" href="index.html"><img class="logo" src="logo.svg"></a>
+<video id="gif" autoplay muted playsinline style="display:none;">
+    <source src="win.webm" type="video/webm">
+</video>
+
+<div class="cadre">
+    <h1>Ostéo Quiz</h1>
+
+    <!-- 🟩 Écran de choix -->
+    <div id="setup">
+        <p>Choisissez une catégorie :</p>
+        <select id="category"></select>
+
+        <p>Combien de questions souhaitez-vous ?</p>
+        <input type="number" id="nbQuestions" min="1" value="5">
+        <button id="startBtn">Lancer le quiz</button>
+    </div>
+
+
+    <!-- 🟦 Écran du quiz -->
+    <div id="quiz" style="display:none;">
+        <p id="question"></p>
+        <div id="answers"></div>
+        <p id="result"></p>
+        <button id="nextBtn" style="display:none;">Question suivante</button>
+    </div>
+
+    <!-- 🟥 Écran de fin -->
+    <div id="end" style="display:none;">
+        <p id="score"></p>
+        <button id="restartBtn">Recommencer</button>
+    </div>
+</div>
+
+<a href="admin.html">Connexion admin</a>
+</body>
+</html>
