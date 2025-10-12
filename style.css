@@ -134,19 +134,22 @@ nav {
 #link-s3:hover, #link-s3.active, .asshvlien { background: #CE8B0D; }
 #link-s4:hover, #link-s4.active { background: #129617; }
 #link-s5:hover, #link-s5.active { background: #015CC4; }
+#link-s6:hover, #link-s6.active { background: #977C68; }
+.osteolien { background: #C4A38A }
 
-/*.armlien { background: #BD2214; }*/
 .armlien:hover { background: #720B02; }
-/*.haullien { background: #A210E1; }*/
 .haullien:hover { background: #57007D; }
-/*.asshvlien { background: #FFA600; }*/
 .asshvlien:hover { background: #A76D00; }
+.osteolien:hover { background: #866248; }
+
+
 
 .red { background: #5E0A03 }
 .violet { background: #3E0059 }
 .orange { background: #BD7707 }
 .blue { background: #004799 }
 .green { background: #006E04; }
+.beige { background: #977C68; }
 
 p {
     font-size: 20px;
