@@ -13,37 +13,37 @@
             window.location.href = "login.html";
         }
 
-        // import { logout, loadQuestions, loadCategories } from "./script.js";
-        import { logout, getQuestionsByCategory, loadCategories, deleteCategory } from "./script.js";
+        import { logout, getQuestionsByCategory, loadCategories, deleteCategory, renameCategory } from "./script.js";
 
         document.addEventListener("DOMContentLoaded", async () => {
             const select = document.getElementById("categorie");
-            select.innerHTML = "<option>Chargement...</option>";
+            const listDiv = document.getElementById("list");
+            const renameInput = document.getElementById("renameCatInput");
+            const renameBtn = document.getElementById("renameCatBtn");
 
             // 🔹 Charger les catégories
-            const categories = await loadCategories();
-            if (!categories || categories.length === 0) {
-                select.innerHTML = "<option>Aucune catégorie trouvée</option>";
-            } else {
+            async function refreshCategories() {
+                const categories = await loadCategories();
                 select.innerHTML = "<option value=''>-- Sélectionnez une catégorie --</option>";
-                categories.forEach(cat => {
-                    const opt = document.createElement("option");
-                    opt.value = cat;
-                    opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-                    select.appendChild(opt);
-                });
+                if (categories) {
+                    categories.forEach(cat => {
+                        const opt = document.createElement("option");
+                        opt.value = cat;
+                        opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+                        select.appendChild(opt);
+                    });
+                }
             }
 
-            // 🔹 Lorsqu’on choisit une catégorie → charger les questions
+            await refreshCategories();
+
+            // 🔹 Afficher les questions lors de la sélection d’une catégorie
             select.addEventListener("change", async () => {
                 const cat = select.value;
-                const listDiv = document.getElementById("list");
                 listDiv.innerHTML = "";
-
                 if (!cat) return;
 
-                const questions = await getQuestionsByCategory(cat); // ✅ récupère correctement
-
+                const questions = await getQuestionsByCategory(cat);
                 if (!questions || questions.length === 0) {
                     listDiv.textContent = "Aucune question trouvée dans cette catégorie.";
                     return;
@@ -53,12 +53,12 @@
                     const div = document.createElement("div");
                     div.className = "question-item";
                     div.innerHTML = `
-            <p><strong>${q.intitule}</strong></p>
-            <p><em>Réponse :</em> ${q.reponse}</p>
-            <button class="modifier">Modifier</button>
-            <button class="supprimer">Supprimer</button>
-            <hr>
-        `;
+                        <p><strong>${q.intitule}</strong></p>
+                        <p><em>Réponse :</em> ${q.reponse}</p>
+                        <button class="modifier">Modifier</button>
+                        <button class="supprimer">Supprimer</button>
+                        <hr>
+                    `;
 
                     div.querySelector(".modifier").addEventListener("click", () => {
                         localStorage.setItem("editCat", cat);
@@ -77,28 +77,42 @@
                 });
             });
 
-            // 🔹 Bouton Supprimer la catégorie
+            // 🔹 Supprimer la catégorie
             document.getElementById("deleteCatBtn").addEventListener("click", async () => {
                 const cat = select.value;
                 if (!cat) return alert("Veuillez sélectionner une catégorie à supprimer !");
                 if (!confirm(`Supprimer la catégorie "${cat}" et toutes ses questions ?`)) return;
 
                 try {
-                    await deleteCategory(cat); // ✅ fonction à créer dans script.js
+                    await deleteCategory(cat);
                     alert(`Catégorie "${cat}" supprimée avec succès !`);
-                    // Recharge la liste des catégories
-                    const categories = await loadCategories();
-                    select.innerHTML = "<option value=''>-- Sélectionnez une catégorie --</option>";
-                    categories.forEach(c => {
-                        const opt = document.createElement("option");
-                        opt.value = c;
-                        opt.textContent = c.charAt(0).toUpperCase() + c.slice(1);
-                        select.appendChild(opt);
-                    });
-                    document.getElementById("list").innerHTML = "";
+                    await refreshCategories();
+                    listDiv.innerHTML = "";
                 } catch (e) {
                     console.error(e);
                     alert("Erreur lors de la suppression de la catégorie !");
+                }
+            });
+
+            // 🔹 Renommer la catégorie
+            renameBtn.addEventListener("click", async () => {
+                const oldCat = select.value;
+                const newCat = renameInput.value.trim();
+                if (!oldCat) return alert("Veuillez sélectionner une catégorie à renommer !");
+                if (!newCat) return alert("Veuillez saisir le nouveau nom !");
+                if (oldCat === newCat) return alert("Le nouveau nom est identique à l'ancien !");
+
+                if (!confirm(`Renommer la catégorie "${oldCat}" en "${newCat}" ?`)) return;
+
+                try {
+                    await renameCategory(oldCat, newCat);
+                    alert(`Catégorie renommée en "${newCat}" avec succès !`);
+                    await refreshCategories();
+                    listDiv.innerHTML = "";
+                    renameInput.value = "";
+                } catch (e) {
+                    console.error(e);
+                    alert("Erreur lors du renommage de la catégorie !");
                 }
             });
 
@@ -116,9 +130,10 @@
 <div>
     <label for="categorie"><strong>Catégorie :</strong></label>
     <select id="categorie"></select>
-    <button id="deleteCatBtn" >Supprimer la catégorie</button>
+    <button id="deleteCatBtn">Supprimer la catégorie</button>
+    <input type="text" id="renameCatInput" placeholder="Nouveau nom de catégorie">
+    <button id="renameCatBtn">Renommer la catégorie</button>
 </div>
-
 
 <div id="list"></div>
 <p id="message"></p>
