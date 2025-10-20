@@ -304,3 +304,33 @@ export async function deleteCategory(cat) {
     await deleteCollection(cat);
     await removeCategoryName(cat);
 }
+
+
+// import { collection, getDocs, doc, setDoc, deleteDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+// 🔹 Renomme une catégorie : copie la collection, supprime l’ancienne, met à jour categories/liste
+export async function renameCategory(oldCat, newCat) {
+    const oldColRef = collection(db, oldCat);
+    const newColRef = collection(db, newCat);
+
+    // Copier tous les documents
+    const snapshot = await getDocs(oldColRef);
+    for (const docSnap of snapshot.docs) {
+        await setDoc(doc(db, newCat, docSnap.id), docSnap.data());
+    }
+
+    // Supprimer l’ancienne collection
+    for (const docSnap of snapshot.docs) {
+        await deleteDoc(doc(db, oldCat, docSnap.id));
+    }
+
+    // Mettre à jour categories/liste
+    const catRef = doc(db, "categories", "liste");
+    const snap = await getDoc(catRef);
+    if (snap.exists()) {
+        const noms = snap.data().noms || [];
+        const newNoms = noms.map(c => (c === oldCat ? newCat : c));
+        await updateDoc(catRef, { noms: newNoms });
+    }
+}
+
