@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jouer un quiz</title>
+    <link rel="stylesheet" href="../../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="header">
+    <h1>Jouer un quiz</h1>
+    <button id="logout-btn" >Se déconnecter</button>
+</div>
+
+<div class="play-container">
+    <h2 id="title"></h2>
+
+    <!-- QUESTION -->
+    <div class="question-box" id="question-box">
+        <h3 id="question"></h3>
+        <div class="answers" id="answers"></div>
+        <button class="next-btn" id="next" hidden>Question suivante</button>
+    </div>
+
+    <!-- FIN -->
+    <div class="finish-box" id="finish-box" hidden>
+        <h2>Quiz terminé 🎉</h2>
+        <p id="score-text"></p>
+        <button class="restart-btn" id="restart">Rejouer</button>
+        <button class="back-btn" onclick="history.back()">Retour</button>
+    </div>
+
+</div>
+
+<script type="module" src="play.js"></script>
+</body>
+</html>
