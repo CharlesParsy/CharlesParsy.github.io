@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .auth-container {
+            background: #F5EEE5;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .auth-container h1 {
+            color: #2e297d;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #2e297d;
+            outline: none;
+        }
+
+        .error-message {
+            background: #ffe5e5;
+            color: #d32f2f;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 14px;
+            background: #2e297d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        .btn-register:hover:not(:disabled) {
+            background: #3d35a0;
+            transform: translateY(-2px);
+        }
+
+        .btn-register:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+
+        .auth-footer a {
+            color: #2e297d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .password-strength.show {
+            display: block;
+        }
+
+        .strength-weak { color: #d32f2f; }
+        .strength-medium { color: #f57c00; }
+        .strength-strong { color: #388e3c; }
+
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Créer un compte</h1>
+
+    <div id="error-message" class="error-message"></div>
+    <div id="success-message" class="success-message"></div>
+
+    <form id="register-form">
+        <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" placeholder="exemple@email.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="Minimum 6 caractères" required autocomplete="new-password">
+            <div id="password-strength" class="password-strength"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm-password">Confirmer le mot de passe</label>
+            <input type="password" id="confirm-password" placeholder="Retapez votre mot de passe" required autocomplete="new-password">
+        </div>
+
+        <button type="submit" id="register-btn" class="btn-register">S'inscrire</button>
+    </form>
+
+    <div class="auth-footer">
+        <p>Déjà inscrit ? <a href="../login">Se connecter</a></p>
+        <p><a href="../">← Retour à l'accueil</a></p>
+    </div>
+</div>
+
+<script type="module" src="register.js"></script>
+
+</body>
+</html>

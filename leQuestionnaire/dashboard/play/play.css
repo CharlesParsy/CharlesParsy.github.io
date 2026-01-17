@@ -1,0 +1,99 @@
+.play-container {
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.small-container {
+    width: fit-content;
+    margin: auto;
+    padding: 30px;
+    background: #F5EEE5;
+    border-radius: 25px;
+    text-align: center;
+}
+.question-box, .finish-box {
+    max-width: 680px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #ccc;
+    margin: 20px auto auto auto;
+    /*border-bottom: 6px solid;*/
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+.answers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.answer-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #4f8cff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/*.answer-btn:hover {*/
+/*    opacity: 0.9;*/
+/*}*/
+
+.answers button:hover {
+    background: #e4e4e4;
+}
+
+.answer-btn.correct {
+    background: #8ADD88 !important;
+    border-color: #70BE71 !important;
+    color: #FFFFFF !important;
+}
+
+.answer-btn.wrong {
+    background: #EA8E8D !important;
+    border-color: #DC5857 !important;
+    color: #FFFFFF !important;
+}
+
+.next-btn, .restart-btn, .back-btn {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #2e297d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.next-btn:hover, .restart-btn:hover, .back-btn:hover {
+    opacity: 0.85;
+}
+
+.explanation-box {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fdfdfd;
+    border-radius: 10px;
+    animation: fadeIn .3s ease;
+}
+
+
+
+
+
+
+
+

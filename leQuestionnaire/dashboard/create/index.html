@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer un quiz</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Créer un Quiz</h1>
+  <button id="logout-btn">Se déconnecter</button>
+</header>
+
+<div class="container">
+
+  <div class="quiz-basics">
+    <h2>Informations du quiz</h2>
+    <label>Nom du quiz</label>
+    <input id="quiz-name" placeholder="Ex: Culture générale française">
+
+    <label>Description</label>
+    <textarea id="quiz-desc" placeholder="Une brève description du contenu du quiz" rows="3"></textarea>
+
+    <label>Catégorie</label>
+    <select id="category-select"></select>
+
+    <label>Thème</label>
+    <div id="themes" class="theme-grid"></div>
+  </div>
+
+  <h2>Questions</h2>
+
+  <div id="questions"></div>
+
+  <button id="add-question" class="btn-primary">+ Ajouter une question</button>
+
+  <div class="actions-container">
+    <button id="cancel-btn" class="btn red-btn">Annuler</button>
+    <button id="create-quiz" class="btn-primary">Créer le quiz</button>
+  </div>
+
+  <script type="module" src="create.js"></script>
+</div>
+</body>
+</html>

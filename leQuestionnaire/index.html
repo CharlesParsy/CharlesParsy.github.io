@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz de Pierre</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header>
+    <h1>Le Questionnaire</h1>
+    <a href="../login">Connexion</a>
+</header>
+
+<div class="public-header">
+    <button class="admin-login" onclick="window.location.href='login'">Espace Admin</button>
+    <p>Testez vos connaissances sur différents sujets !</p>
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number" id="total-categories">0</div>
+            <div class="stat-label">Catégories</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="total-quizzes">0</div>
+            <div class="stat-label">Quiz disponibles</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="loading" class="loading">Chargement des quiz...</div>
+    <div id="categories"></div>
+</div>
+
+<script type="module" src="home.js"></script>
+</body>
+</html>
