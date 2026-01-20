@@ -179,8 +179,8 @@ function addWrongAnswerInput(container, question, index) {
     btn.className = "btn-icon red-btn";
     btn.title = "Supprimer cette réponse";
     btn.onclick = () => {
-        if (question.answers.length <= 2) {
-            return alert("Vous devez avoir au moins 2 réponses fausses");
+        if (question.answers.length <= 1) {
+            return alert("Vous devez avoir au moins 1 réponses fausses");
         }
         question.answers.splice(index, 1);
         renderQuestions();
