@@ -135,15 +135,14 @@ nav {
 #link-s4:hover, #link-s4.active { background: #129617; }
 #link-s5:hover, #link-s5.active { background: #015CC4; }
 #link-s6:hover, #link-s6.active { background: #977C68; }
-.osteolien { background: #C4A38A }
 
+.osteolien { background: #C4A38A }
 .armlien:hover { background: #720B02; }
 .haullien:hover { background: #57007D; }
 .asshvlien:hover { background: #A76D00; }
 .osteolien:hover { background: #866248; }
 
-
-
+#link-s7:hover, #link-s7.active,.grey { background: #1A1D23; }
 .red { background: #5E0A03 }
 .violet { background: #3E0059 }
 .orange { background: #BD7707 }
