@@ -1,0 +1,247 @@
+/*GENERAL*/
+body {
+    margin: 0;
+    background-color: black;
+    text-align: center;
+    z-index: -1;
+}
+p {
+    line-height: 1.6;
+    font-size: 16px;
+}
+/*MENU*/
+#buttonMenu {visibility: hidden;}
+.line {
+    position: absolute;
+    transition: 1s all ease;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 5px;
+    width: 40px;
+    border-radius: 10px;
+    background: white;
+}
+.hamburger-lines {
+    float: right;
+    visibility: hidden;
+    height: 50px;
+    width: 50px;
+    border: 0;
+    background: black;
+}
+
+#line1 {
+    top: 35px;
+}
+#line3 {
+    top: 15px;
+}
+.line1 {
+    rotate: 45deg;
+    top: 25px !important;
+}
+.line2 {
+    height: 0;
+}
+.line3 {
+    rotate: -45deg;
+    top: 25px !important;
+}
+
+header {
+    margin: 0 5%;
+    border-bottom: solid 3px orange;
+    height: 110px;
+}
+.menu {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.menuE {
+    transition: 1s all ease;
+    text-decoration: orange;
+    color: white;
+}
+.menuE:hover {border-bottom: solid 3px orange;}
+
+/*TEXTS*/
+h1, h2, h3, h4, p, a {
+    color: white;
+    font-family: Trebuchet MS, sans-serif;
+}
+a {
+    font-size: 20px;
+    text-decoration: none;
+}
+h1 {
+    position: sticky;
+    font-size: 90px;
+}
+h2 {font-size: 50px;}
+h3 {font-size: 34px;}
+h4 {font-size: 26px;}
+p {
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.justify {text-align: justify;}
+
+
+/*ASHHV*/
+.logo {width: 100%;}
+.slogo {
+    border-bottom: solid 3px orange;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+/*TOURNOI*/
+.octogone {
+    width: 500px;
+}
+
+/*SPONSORS*/
+.sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    justify-content: center;
+}
+.sp {
+    transition: 0.7s all ease;
+    height: 150px;
+    margin: 10px;
+}
+.sp:hover {opacity: 0.4;}
+
+/*TOMBOLA*/
+.lien {
+    border: solid 2px white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/*FOOTER*/
+footer {border-top: solid 3px orange;}
+.icon {
+    width: 40px;
+    height: 40px;
+}
+.contact {
+    margin-right: 5%;
+    margin-left: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.logoF {width: 10%;}
+.e {display: flex;}
+.s {
+    margin-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.fa {display: inline-block;}
+.menuF {
+    display: flex;
+    flex-direction: column;
+}
+#main {
+    background: black;
+    width: 100%;
+    margin-left: 0;
+}
+.equipe-img {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 50%;
+    /*height: 200px;*/
+}
+.equipe-logo {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 30%;
+    /*height: 200px;*/
+}
+.equipe-imgs {
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-content: space-around;
+    display: flex;
+    vertical-align: center;
+}
+
+/*RESPONSIVE*/
+@media only screen and (max-width: 1500px) {
+    .sp {
+        height: 110px;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    #buttonMenu {
+        visibility: visible;
+    }
+    header {
+        height: 50px;
+    }
+    .menu {
+        margin-top: 55px;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        background: #181818;
+        margin-left: 0;
+    }
+    #main {
+        transition: 1s all ease;
+        z-index: 1;
+        position: absolute;
+    }
+    .menuE {
+        margin-bottom: 10px;
+        font-size: 30px;
+        width: 100%;
+    }
+    .sp {
+        height: 80px;
+        margin: 5px;
+    }
+    #d, #g, #g2, #d2 {
+        margin-top: 25px;
+    }
+}
+@media only screen and (max-width: 800px) {
+    h1 {font-size: 50px;}
+    h2 {font-size: 35px;}
+    h3 {font-size: 22px;}
+    h4 {font-size: 19px;}
+    p {font-size: 14px;}
+    .s {font-size: 15px;}
+    .sp {
+        height: 40px;
+        margin: 2px;
+    }
+    #d, #g, #g2, #d2 {margin-top: 10px;}
+}
+
+@media only screen and (max-width: 500px) {
+    h1 {font-size: 40px;}
+    h2 {font-size: 28px;}
+    h3 {font-size: 19px;}
+    h4 {font-size: 17px;}
+    p {font-size: 12px;}
+    .icon {
+        width: 30px;
+        height: 30px;
+    }
+    .sp {
+        height: 40px;
+        margin: 1px;
+    }
+    .octogone {width:80%;}
+    #d, #g, #g2, #d2 {margin-top: 2px;}
+}

@@ -1,0 +1,280 @@
+/*GENERAL*/
+body {
+    margin: 0;
+    background-color: black;
+    text-align: center;
+    z-index: -1;
+}
+
+/*HEADER*/
+
+
+/*MENU*/
+#buttonMenu {
+    visibility: hidden;
+}
+.line {
+    transition: 1s all ease;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 5px;
+    width: 40px;
+    border-radius: 10px;
+    background: white;
+}
+.hamburger-lines {
+    float: right;
+    visibility: hidden;
+    display: inline;
+    justify-content: space-between;
+    height: 50px;
+    width: 50px;
+    border: 0;
+    background: black;
+}
+
+.line1 {
+    position: absolute;
+    rotate: 45deg;
+}
+.line2 {
+    background: black;
+}
+.line3 {
+    /*z-index: 3;*/
+    /*position: absolute;*/
+    /*margin-top: 10px;*/
+    rotate: -45deg;
+}
+
+
+header {
+    margin: 0 5%;
+    border-bottom: solid 3px orange;
+    height: 110px;
+}
+.menu {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+.menuE {
+    transition: 1s all ease;
+    text-decoration: orange;
+    color: white;
+    font-size: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.menuE:hover {
+    border-bottom: solid 3px orange;
+}
+
+
+/*TEXTS*/
+h1, h2, h3, p, a {
+    color: white;
+    font-family: Trebuchet MS, sans-serif;
+}
+a {
+    font-size: 20px;
+    text-decoration: none;
+}
+h1 {
+    position: sticky;
+    font-size: 90px;
+}
+h2 {
+    font-size: 50px;
+}
+h3 {
+    font-size: 34px;
+}
+p {
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.justify {
+    text-align: justify;
+}
+
+
+/*ASHHV*/
+.logo {
+    width: 100%;
+}
+.slogo {
+    border-bottom: solid 3px orange;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+
+/*SPONSORS*/
+#d, #g, #g2, #d2 {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    margin-top: 50px;
+}
+
+#g, #g2 {
+    left: 5%;
+    transform:rotate(180deg);
+}
+#d, #d2 {
+    right: 5%;
+}
+
+.sponsors {
+    display: flex;
+    justify-content: center;
+}
+.sp {
+    height: 200px;
+    margin: 10px;
+}
+
+/*TOMBOLA*/
+.lien {
+    border: solid 2px white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/*FOOTER*/
+footer {border-top: solid 3px orange;}
+.icon {
+    width: 40px;
+    height: 40px;
+}
+.contact {
+    margin-right: 5%;
+    margin-left: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.logoF {
+    width: 10%;
+}
+.e {display: flex;}
+.s {
+    margin-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.fa {display: inline-block;}
+.menuF {
+    display: flex;
+    flex-direction: column;
+}
+#main {
+
+    background: black;
+    width: 100%;
+    margin-left: 0;
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+}
+
+/*RESPONSIVE*/
+@media only screen and (max-width: 1500px) {
+    .sp {
+        height: 110px;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    #buttonMenu {
+        visibility: visible;
+    }
+    header {
+        height: 50px;
+    }
+    .menu {
+        margin-top: 55px;
+        position: absolute;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        background: #181818;
+    }
+    #main {
+        /*transform: translateY(50px);*/
+        transition: 1s all ease;
+        /*top: -20px;*/
+        /*margin-top: 0;*/
+        z-index: 1;
+        position: absolute;
+    }
+    /*#buttonMenu {*/
+        /*z-index: 2;*/
+        /*position: absolute;*/
+    /*}*/
+    .menuE {
+        /*z-index: 1;*/
+        /*position: absolute;*/
+        /*top:0;*/
+        /*margin-top: 10px;*/
+        margin-bottom: 10px;
+        font-size: 30px;
+    }
+    /*header {*/
+    /*    height: 200px;*/
+    /*    background: cornflowerblue;*/
+    /*}*/
+    .sp {
+        height: 80px;
+        margin: 5px;
+    }
+    #d, #g, #g2, #d2 {
+        margin-top: 25px;
+    }
+}
+@media only screen and (max-width: 800px) {
+    h1 {
+        font-size: 50px;
+    }
+    h2 {
+        font-size: 35px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    .s {
+        font-size: 15px;
+    }
+    .sp {
+        height: 40px;
+        margin: 2px;
+    }
+    #d, #g, #g2, #d2 {
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    h1 {
+        font-size: 40px;
+    }
+    h2 {
+        font-size: 28px;
+    }
+    h3 {
+        font-size: 19px;
+    }
+    p {
+        font-size: 18px;
+    }
+    .icon {
+        width: 30px;
+        height: 30px;
+    }
+    .sp {
+        height: 40px;
+        margin: 1px;
+    }
+    #d, #g, #g2, #d2 {
+        margin-top: 2px;
+    }
+}
