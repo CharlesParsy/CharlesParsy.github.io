@@ -1,0 +1,29 @@
+<textarea id="text" rows="6" cols="60"></textarea>
+<br><br>
+<button onclick="generate()">Générer le quiz</button>
+<pre id="result"></pre>
+
+<script>
+    async function generate() {
+        const text = document.getElementById("text").value;
+
+        const res = await fetch("http://localhost:8000/generate?text=" + encodeURIComponent(text), {
+            method: "POST"
+        });
+
+        const data = await res.json();
+        document.getElementById("result").innerText = data.quiz;
+    }
+
+    fetch("http://localhost:8000/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            title: "Smart Mobility 2",
+            text: "The development of smart mobility aims to improve transport efficiency..."
+        })
+    })
+        .then(res => res.json())
+        .then(data => console.log(data));
+
+</script>

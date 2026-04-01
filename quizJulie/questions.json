@@ -1,0 +1,204 @@
+{
+  "Smart Mobility 2": {
+    "q1": {
+      "intitule": "What are key motivations behind smart mobility development?",
+      "propositions": [
+        "Reducing the need for public transport",
+        "Eliminating data collection",
+        "Increasing traffic congestion"
+      ],
+      "reponse": "Increasing efficiency, safety and quality of transport",
+      "solution": "Why is ITS implemented? Increasing the efficiency… Increasing security… Improving quality…"
+    },
+    "q2": {
+      "intitule": "Which elements are part of an Intelligent Transport System (ITS)?",
+      "propositions": [
+        "Only ICT devices",
+        "Only vehicles and roads",
+        "Only software"
+      ],
+      "reponse": "Fleet, Infrastructure, Human Resources, Law regulations",
+      "solution": "Intelligent transport system… Fleet, Infrastructure, HR, Law regulations."
+    },
+    "q3": {
+      "intitule": "Which of the following is a V2I functionality?",
+      "propositions": [
+        "Adaptive Cruise Control",
+        "Platooning",
+        "Intersection collision warning between vehicles"
+      ],
+      "reponse": "Collecting and comparing data from vehicles to map and manage incidents",
+      "solution": "V2I: Collect and compare data from vehicles to help map and manage incidents."
+    },
+    "q4": {
+      "intitule": "Which of the following belongs to V2V communication?",
+      "propositions": [
+        "Adaptive traffic light control",
+        "Electronic payment systems",
+        "Pre-trip planning"
+      ],
+      "reponse": "Blind spot monitoring",
+      "solution": "V2V: Blind spot monitoring…"
+    },
+    "q5": {
+      "intitule": "Which IPTS system provides real-time vehicle location?",
+      "propositions": [
+        "Automatic Passenger Counter",
+        "Traveler Information System",
+        "Decision Support System"
+      ],
+      "reponse": "Automatic Vehicle Location System (AVLS)",
+      "solution": "AVLS – provide real-time information about PuT vehicles – location, speed…"
+    },
+    "q6": {
+      "intitule": "Which standard is used for real-time public transport data?",
+      "propositions": [
+        "GTFS",
+        "NeTEx",
+        "DATEX II"
+      ],
+      "reponse": "GTFS-RT",
+      "solution": "SIRI – real time data and GTFS-RT."
+    },
+    "q7": {
+      "intitule": "Which standard defines structured static transport information (timetables)?",
+      "propositions": [
+        "SIRI",
+        "GTFS-RT",
+        "GBFS"
+      ],
+      "reponse": "NeTEx",
+      "solution": "NeTEx – static data / xml communicates."
+    },
+    "q8": {
+      "intitule": "According to SAE J3016, differences between levels 1–5 relate mainly to:",
+      "propositions": [
+        "The type of fuel used",
+        "Vehicle size",
+        "Ownership model"
+      ],
+      "reponse": "How responsibility for safe movement is shared between ADAS and driver",
+      "solution": "Above Level 1… differences are related to how responsibility… is divided/shared between ADAS and driver."
+    },
+    "q9": {
+      "intitule": "What elements are part of a transport system?",
+      "propositions": [
+        "Only roads and vehicles",
+        "Ticket pricing only",
+        "Advertising and marketing"
+      ],
+      "reponse": "Infrastructure, rolling stock, human resources, information flows, principles of organization",
+      "solution": "Transport System – a set of elements involved in the process of moving people and/or goods… infrastructure, rolling stock, human resources, information flows, principles of organization."
+    },
+    "q10": {
+      "intitule": "Which activities are included in transport management?",
+      "propositions": [
+        "Painting vehicles",
+        "Selling tickets online",
+        "Designing logos"
+      ],
+      "reponse": "Planning, organizing, giving orders, coordination, controlling",
+      "solution": "Management – activities aimed at the effective use of available resources… planning and decision-making, organizing, giving orders, coordination, controlling."
+    },
+    "q11": {
+      "intitule": "Which of the following is a main question addressed by transport management?",
+      "propositions": [
+        "How to design vehicle colors",
+        "How to increase traffic jams",
+        "How to avoid regulations"
+      ],
+      "reponse": "How to create safe and reliable transport systems for passengers and cargo",
+      "solution": "Transport Management seeks to answer questions like: How to create transport systems and infrastructure that are safe and reliable…"
+    },
+    "q12": {
+      "intitule": "Which of the following is an example of a transport decision-making problem?",
+      "propositions": [
+        "Choosing the most popular vehicle brand",
+        "Decorating stations",
+        "Running social media campaigns"
+      ],
+      "reponse": "Minimum cost of transporting goods from m origins to n destinations",
+      "solution": "Transport problem – finding the minimum cost of transportation of goods from m origin to n destination."
+    },
+    "q13": {
+      "intitule": "Which of these is also considered in transport management decision problems?",
+      "propositions": [
+        "Painting vehicles",
+        "Selling food in transport hubs",
+        "Running ads in stations"
+      ],
+      "reponse": "Fleet sizing and composition, vehicle scheduling, location of hubs, scheduling drivers, ranking service providers",
+      "solution": "Fleet sizing and fleet composition, vehicle scheduling, location of objects… scheduling drivers’ work, selecting best logistics service provider."
+    },
+    "q14": {
+      "intitule": "Which function of management is applied to the transport problem (minimum cost)?",
+      "propositions": [
+        "Controlling only",
+        "Leading only",
+        "Painting vehicles"
+      ],
+      "reponse": "Planning and organizing",
+      "solution": "Decision Problems – Planning & Organizing: Transport problem + +"
+    },
+    "q15": {
+      "intitule": "Which level of transport modeling focuses on individual vehicles and interactions?",
+      "propositions": [
+        "Meso",
+        "Macro",
+        "Global"
+      ],
+      "reponse": "Micro",
+      "solution": "Micro: high accuracy – particular entities, interactions between vehicles, pedestrians, infrastructure. e.g., PTV Vissim, Aimsun."
+    },
+    "q16": {
+      "intitule": "Macro transport models are mainly used for:",
+      "propositions": [
+        "Individual vehicle interactions",
+        "Bicycle tracking only",
+        "Manual ticketing"
+      ],
+      "reponse": "High aggregation traffic flows over large transportation systems",
+      "solution": "Macro: high aggregation – traffic flows, large transportation systems. e.g., PTV Visum, EMME."
+    },
+    "q17": {
+      "intitule": "Which method is considered primary data collection in transport surveys?",
+      "propositions": [
+        "Internet browsing",
+        "Vehicle decoration",
+        "Random guessing"
+      ],
+      "reponse": "Field surveys, interviews, measuring, counting",
+      "solution": "Primary Data Collection: field surveys, interviews, measuring, counting."
+    },
+    "q18": {
+      "intitule": "What is the purpose of a CTS?",
+      "propositions": [
+        "Designing bus colors",
+        "Selling tickets online",
+        "Creating advertisements"
+      ],
+      "reponse": "Inventory of movement of people and vehicles, and examination of transport behaviors",
+      "solution": "CTS – ‘inventory’ of the movement of people and vehicles, examination of transport behaviors in a separate territorial unit."
+    },
+    "q19": {
+      "intitule": "Which of the following is typically included in a CTS?",
+      "propositions": [
+        "Painting vehicles",
+        "Running social media ads",
+        "Selling merchandise"
+      ],
+      "reponse": "Travel behavior survey, traffic volume counts, speed data, vehicle classification, origin-destination surveys, travel time studies, parking studies",
+      "solution": "CTS typically includes: Travel Behavior Survey, Traffic Volume Counts, Speed Data, Vehicle Classification, Origin-Destination Surveys, Travel Time and Delay Studies, Parking Studies, etc."
+    },
+    "q20": {
+      "intitule": "Which rule is important when delimiting a CTS research area?",
+      "propositions": [
+        "Only highways should be included",
+        "Only bicycle paths are measured",
+        "Area should be arbitrary"
+      ],
+      "reponse": "Most journeys related to the study area should begin and end in the area",
+      "solution": "The majority of journeys related to the future study area should have their beginning and end in the research area."
+    }
+  }
+}

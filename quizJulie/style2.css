@@ -1,0 +1,141 @@
+/* === STYLE GLOBAL === */
+body {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: #f5eee5;
+    color: #3b2f2a;
+    padding: 20px;
+}
+.logoA {
+    width: 150px;
+    opacity: 1;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo {
+    width: 100%;
+}
+/* === CADRE CENTRAL === */
+.cadre {
+    background: #fffaf7;
+    border-radius: 25px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    border-bottom: 10px solid #b7a293;
+    padding: 25px 30px;
+    max-width: 700px;
+    width: 90%;
+    transition: transform 0.2s ease;
+    margin-bottom: 20px;
+}
+.cadre:hover {
+    transform: translateY(-3px);
+}
+
+h1 {
+    color: #3b2f2a;
+    margin-bottom: 20px;
+}
+
+/* === FORMULAIRES === */
+form label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 12px;
+    border: 2px solid #d9a091;
+    background: #fdf7f4;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+}
+input:focus, textarea:focus {
+    border-color: #c2796b;
+    outline: none;
+}
+
+/* === BOUTONS === */
+button, .submit {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 2px solid #b7a293;
+    background-color: #eacdbe;
+    color: #3b2f2a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+button:hover, .submit:hover {
+    background-color: #d9a091;
+    border-color: #c2796b;
+    color: white;
+}
+
+button#logoutBtn {
+    background-color: #b7a293;
+    color: white;
+    border-color: #977c68;
+}
+button#logoutBtn:hover {
+    background-color: #977c68;
+}
+
+/* === CARTES QUESTIONS === */
+.question {
+    background: #fffaf7;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+    border-left: 6px solid #d9a091;
+}
+.question p {
+    margin: 6px 0;
+}
+
+/* === LIEN RETOUR/AJOUT === */
+a {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #3b2f2a;
+    text-decoration: none;
+    font-weight: bold;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* === MESSAGE STATUS === */
+#message {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+    .cadre {
+        padding: 20px;
+        border-radius: 15px;
+    }
+    input, textarea {
+        font-size: 14px;
+    }
+    button, .submit {
+        width: 100%;
+    }
+}
