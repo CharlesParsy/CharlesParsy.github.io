@@ -1,4 +1,8 @@
 /*GENERAL*/
+.logo-text {
+    position: absolute;
+    top: 0;
+}
 h1 {
     padding-top: 120px;
     font-size: clamp(14px,8vw,70px);
@@ -53,15 +57,7 @@ body {
     margin: 0 auto;
     top: 40px;
 }
-.degrade-haut {
-    z-index: 2;
-    position: relative;
-    margin-top: 180px;
-    padding-bottom: 10px;
-    width: 100%;
-    background: linear-gradient(#000030, #640065);
-}
-.degrade-bas {
+.degrade {
     z-index: 2;
     position: relative;
     margin-top: 180px;
@@ -72,127 +68,25 @@ body {
 
 /*FONDS*/
 .bleu {background: #000030;}
-.bleu2 {
-    background: #320047;
-}
+.bleu2 {background: #320047;}
 .violet {background: #640065;}
 .noir {
     background: black;
     width: 100%;
 }
 
-/*PROGRAMME*/
-.illustration {
-    z-index: 1;
-    position: absolute;
-    width: 100%;
-    top: 1250px;
-    left: 0;
-}
-.illustration2 {
-    z-index: 1;
-    position: absolute;
-    width: 60%;
-    left: 20%;
-    top: 2050px;
-}
-.i4 {
-    /*position: absolute;*/
-    margin-top: 40px;
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.groupe {
-    z-index: 3;
-    width: 20%;
-    align-self: start;
-    border: solid 10px #320047;
-    background: #320047;
-}
-.groupe:hover .groupe2:hover {
-    border: solid 10px #640065;
-    background: #640065;
-}
-.groupe2 {
-    z-index: 2;
-    width: 40%;
-    margin-right: auto;
-    margin-left: auto;
-}
-.groupe3 {
-    width: 26%;
-    border: solid 10px #320047;
-    background: #320047;
-}
-.groupe:hover {width: 60%;}
-.groupe2:hover {width: 50%;}
-/*.groupe3:hover {width: 30%;}*/
-.groupeIMG {
-    width: 100%;
-}
-.d {
-    text-align: justify;
-    font-size: clamp(5px,2vw,18px);
-    margin: 20px;
-}
-.anim {
-    animation-duration: 5s;
-    animation-name: appears;
-}
-.gF {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-.gF2 {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-.groupes {
-    height: 500px;
+
+/*EDITION*/
+.photos {
+    justify-content: center;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
     margin-left: 5%;
     margin-right: 5%;
 }
-.groupes2 {
-    /*height: fit-content;*/
-    padding-bottom: 450px;
-    margin-left: 0;
-    margin-right: 0;
-}
-.groupes3 {
-    display: flex;
-    justify-content: space-around;
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 500px;
-}
-.button {
-    z-index: 5;
-    background: #640065;
-    color: white;
-    border: solid 5px #000030;
-    position: fixed;
-    font-size: clamp(6px,2vw,20px);
-    padding: 10px;
-    top: 5%;
-    right: 5%;
-    border-radius: 10px;
-    width: 10%;
-}
-.button2 {
-    background: #640065;
-    font-size: clamp(6px,8vw,20px);
-    color: white;
-    border: solid 5px #000030;
-    padding: 10px;
-    border-radius: 10px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 20%;
+.photo {
+    height: 200px;
+    margin: 10px;
 }
 
 /*FOOTER*/
@@ -249,10 +143,14 @@ a {
         width: 280px;
         top: 25px;
     }
-    .degrade-haut {margin-top: -95px;}
+    .degrade {margin-top: -95px;}
 }
 
 @media only screen and (max-width: 800px) {
+    .photo {
+        height: 100px;
+        margin: 7px;
+    }
     .groupes {
         flex-direction: column;
         height: fit-content;
@@ -261,7 +159,6 @@ a {
     .groupes3 {
         flex-direction: column;
         height: fit-content;
-        /*height: 800px;*/
     }
     .illustration, .illustration2, .i4 {
         visibility: hidden;
@@ -291,6 +188,10 @@ a {
     }
 }
 @media only screen and (max-width: 350px) {
+    .photo {
+        height: 50px;
+        margin: 4px;
+    }
     .f {
         width: 250px;
         margin-bottom: 0;
@@ -299,7 +200,7 @@ a {
         width: 200px;
         top: 10px;
     }
-    .degrade-haut {
+    .degrade {
         top: 10px;
     }
 }
